@@ -12,11 +12,18 @@ def save_uploaded_file(uploaded_file, folder_path):
     return None
 
 # Streamlit UI
-st.title("File Upload Progress Bar")
+#st.title("File Upload Progress Bar")
 
 # Create a folder to save uploaded files
 upload_folder = "uploads"
 os.makedirs(upload_folder, exist_ok=True)
+
+# Display files in the local folder
+st.subheader("Uploaded Files")
+uploaded_files = os.listdir(upload_folder)
+for file_name in uploaded_files:
+    st.write(file_name)
+
 
 # Upload a file
 uploaded_file = st.file_uploader("Upload a file:", type=["csv", "txt", "xlsx"])
@@ -37,8 +44,5 @@ if uploaded_file:
     else:
         st.error("Failed to save the file.")
 
-# Display files in the local folder
-st.subheader("Uploaded Files")
-uploaded_files = os.listdir(upload_folder)
-for file_name in uploaded_files:
-    st.write(file_name)
+
+st.write("Version 2.0")
